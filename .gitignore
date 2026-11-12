@@ -1,0 +1,10 @@
+# macOS / Windows
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+.idea/
+
+# Temporary screenshots and exports
+*.tmp

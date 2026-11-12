@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Panel de mantenimiento preventivo y correctivo de activos.">
+  <title>Manteni · Control de mantenimiento</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Navegación principal">
+      <a class="brand" href="#inicio"><span class="brand-mark">M</span><span>Manteni<small>GESTIÓN DE ACTIVOS</small></span></a>
+      <p class="nav-label">ESPACIO DE TRABAJO</p>
+      <nav>
+        <a class="nav-item active" href="#inicio" aria-current="page"><span>▦</span> Resumen</a>
+        <a class="nav-item" href="#activos"><span>▤</span> Activos</a>
+        <a class="nav-item" href="#ordenes"><span>◷</span> Órdenes de trabajo</a>
+        <a class="nav-item" href="#historias"><span>☷</span> Historias de usuario</a>
+      </nav>
+      <div class="sidebar-bottom"><span class="avatar">ML</span><div><strong>Maikol Lozano</strong><small>Proyecto académico individual</small></div></div>
+    </aside>
+    <main id="inicio" class="main-content">
+      <header class="topbar"><div><p class="eyebrow">MANTENIMIENTO / PANEL</p><h1>Resumen</h1></div><button class="primary-button" id="new-order">＋ Nueva orden</button></header>
+      <section class="welcome"><div><p class="eyebrow">HOY EN EL TALLER</p><h2>Buen día, Maikol.</h2><p>Esto es lo que sucede con tus activos hoy.</p></div><div class="status-pill"><span></span> Sistema operativo</div></section>
+      <section class="metrics" aria-label="Indicadores de mantenimiento">
+        <article class="metric-card"><div class="metric-top"><span>Activos registrados</span><span class="metric-icon teal">▤</span></div><strong id="asset-count">08</strong><small>En 3 ubicaciones</small></article>
+        <article class="metric-card"><div class="metric-top"><span>Órdenes abiertas</span><span class="metric-icon amber">◷</span></div><strong id="open-count">03</strong><small>1 requiere atención</small></article>
+        <article class="metric-card"><div class="metric-top"><span>Mantenimientos al día</span><span class="metric-icon green">✓</span></div><strong>94<small class="percent">%</small></strong><small>+4% respecto al mes pasado</small></article>
+      </section>
+      <section class="content-grid">
+        <article class="panel orders-panel" id="ordenes"><div class="panel-heading"><div><p class="eyebrow">SEGUIMIENTO</p><h3>Órdenes recientes</h3></div><button class="text-button" id="show-all">Ver todas <span>→</span></button></div>
+          <div class="table-wrap"><table><thead><tr><th>ORDEN / ACTIVO</th><th>RESPONSABLE</th><th>PRIORIDAD</th><th>ESTADO</th></tr></thead><tbody id="order-list"></tbody></table></div>
+        </article>
+        <article class="panel assets-panel" id="activos"><div class="panel-heading"><div><p class="eyebrow">INVENTARIO</p><h3>Estado de activos</h3></div><button class="icon-button" aria-label="Agregar activo" id="new-asset">＋</button></div><div class="asset-list" id="asset-list"></div></article>
+      </section>
+      <section class="panel stories-panel" id="historias"><div class="panel-heading"><div><p class="eyebrow">ALCANCE DEL TALLER</p><h3>Historias de usuario</h3></div><span class="story-count">5 historias · 5 implementadas</span></div><div class="story-grid" id="story-list"></div></section>
+      <footer>Proyecto académico · Mantenimiento de software <span>Repositorio: <a href="https://github.com/may180/actividad-mantenimiento-softwar" target="_blank" rel="noreferrer">may180/actividad-mantenimiento-softwar ↗</a></span></footer>
+    </main>
+  </div>
+  <dialog id="order-dialog"><form method="dialog" id="order-form"><div class="dialog-heading"><div><p class="eyebrow">NUEVO REGISTRO</p><h2>Crear orden de trabajo</h2></div><button class="icon-button" value="cancel" aria-label="Cerrar">×</button></div><label for="order-title">Descripción del mantenimiento</label><input id="order-title" name="title" required maxlength="80" placeholder="Ej. Revisar sistema de refrigeración"><label for="order-asset">Activo</label><select id="order-asset" name="asset"></select><label for="order-priority">Prioridad</label><select id="order-priority" name="priority"><option>Media</option><option>Alta</option><option>Baja</option></select><div class="dialog-actions"><button class="secondary-button" value="cancel">Cancelar</button><button class="primary-button" id="submit-order" value="default">Guardar orden</button></div></form></dialog>
+  <dialog id="asset-dialog"><form method="dialog" id="asset-form"><div class="dialog-heading"><div><p class="eyebrow">INVENTARIO</p><h2>Registrar activo</h2></div><button class="icon-button" value="cancel" aria-label="Cerrar">×</button></div><label for="asset-name">Nombre del activo</label><input id="asset-name" name="name" required maxlength="60" placeholder="Ej. Bomba hidráulica"><label for="asset-location">Ubicación</label><input id="asset-location" name="location" required maxlength="50" placeholder="Ej. Planta norte"><div class="dialog-actions"><button class="secondary-button" value="cancel">Cancelar</button><button class="primary-button" value="default">Guardar activo</button></div></form></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
